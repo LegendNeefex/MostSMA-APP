@@ -84,7 +84,7 @@ function SignIn() {
             const emailChange = emailCheck.toLowerCase();
             
             // console.log("loggedin");
-            localStorage.setItem("studentData", JSON.stringify(data));
+            // localStorage.setItem("studentData", JSON.stringify(data));
             localStorage.setItem("studentEmail", JSON.stringify(emailChange));
             setLoading(true)
             setTimeout(() => {

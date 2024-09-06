@@ -151,13 +151,15 @@ export const MostSmaProvider = (({children})=>{
 
         if (location.pathname === "/register") {
             setButtonText("Sign in");
-            setCheckPage(false); // Set to false to navigate to "/"
             setOtherButtonText("About");
         } else if (location.pathname === "/login") {
             setButtonText("Sign up");
-            setCheckPage(true); // Set to true to navigate to "/home"
             setOtherButtonText("Home");
-        } else {
+        }else if (location.pathname === "/profile") {
+            setCheckPage(true); 
+            // console.log("home");
+            return;
+        }else {
             setButtonText("Sign up");
             setOtherButtonText("About");
             setCheckPage(false); // Default case, navigate to "/"
