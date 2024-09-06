@@ -1,10 +1,14 @@
 import React from 'react'
+import { useContext } from 'react'
+import MostSmaContext from '../context/Most-smaContext'
 
 function Courses() {
+    const {courseClick} = useContext(MostSmaContext)
+
     return (
         <div className='options-school'>
-            <input list="courses" type="text" name="nigerian-courses" id="nigerian-courses"  placeholder='Enter or select your course' />
-            <datalist id='courses'>
+            <input list="course" type="text" name="nigerian-courses" id="nigerian-courses"  placeholder='Enter or select your course' onChange={courseClick} />
+            <datalist id='course'>
                 <option value="Agricultural Science">Agricultural Science</option>
                 <option value="Animal Science">Animal Science</option>
                 <option value="Applied Chemistry">Applied Chemistry</option>

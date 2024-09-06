@@ -12,6 +12,12 @@ export const MostSmaProvider = (({children})=>{
         email:"",
         password:""
     })
+    const [loginText,setLoginText] = useState({
+        email:"",
+        password:""
+    })
+    const [errorType,setErrorType] = useState(false)
+
     const [pwdShow,setPwdShow] = useState(false)
     const [switchTopbar,setSwitchTopbar] = useState(false)
     const [addProfile, setAddProfile] = useState(true);
@@ -21,9 +27,26 @@ export const MostSmaProvider = (({children})=>{
     const [checkPage,setCheckPage] = useState(true)
     const [error,setError] = useState("Error")
     const [errOverLay,setErrOverLay] = useState(false)
+    const [showCode,setShowCode] = useState(false)
+    const [loading,setLoading] = useState(false)
+
+    const [update,setUpdate] = useState({
+        firstName:"",
+        middleName:"",
+        lastName:"",
+        institution:"",
+        course:"",
+        phoneNumber:"",
+        startDate:"",
+        duration:"",
+        endDate:""
+    })
+
+    
 
 
     const location = useLocation();
+
     const navigate = useNavigate();
 
     const checkboxItemsPerTab = useMemo(()=>({
@@ -80,38 +103,42 @@ export const MostSmaProvider = (({children})=>{
     const [checkedItems, setCheckedItems] = useState(() => {
         const currentTab = `tab${switchTab}`;
         return selected[currentTab] || checkboxItemsPerTab[currentTab];
+        
     });
     
     const handleCheckboxChange = (event) => {
-        const currentTab = `tab${switchTab}`;
-        console.log(currentTab);
+        // const currentTab = `tab${switchTab}`;
+        // console.log(currentTab);
         const { name, checked } = event.target;
+        console.log(checked);
 
+        // console.log(checkedItems);
+        if (checked) {
+            setCheckedItems((prevItems) => ({                
+                ...prevItems,[name]: checked
+            }))
+            return checked; 
+        }
 
-        setCheckedItems((prevItems) => ({
-            ...prevItems,  // Keep the other checkboxes
-            [name]: checked  // Update the clicked checkbox
-        }))
-        console.log(checkedItems);
+        // setSelected((prevSelected) => {
+        //     // Only update the selected state if checkedItems are different
+        //     if (JSON.stringify(prevSelected[currentTab]) !== JSON.stringify(checkedItems)) {
+        //         return {
+        //             ...prevSelected,
+        //             [currentTab]: { ...checkedItems }
+        //         };
+        //     }
+        //     return prevSelected;
+        // });
 
-
-        setSelected((prevSelected) => {
-            // Only update the selected state if checkedItems are different
-            if (JSON.stringify(prevSelected[currentTab]) !== JSON.stringify(checkedItems)) {
-                return {
-                    ...prevSelected,
-                    [currentTab]: { ...checkedItems }
-                };
-            }
-            return prevSelected;
-        });
+        
     };
 
     
-    // useEffect(() => {
-    //     console.log('checkedItems:', checkedItems);
-    //     console.log('selected:', selected);
-    // }, [checkedItems, selected]);
+    useEffect(() => {
+        console.log('checkedItems:', checkedItems);
+        console.log('selected:', selected);
+    }, [checkedItems, selected]);
 
 
     useEffect(()=>{
@@ -120,8 +147,7 @@ export const MostSmaProvider = (({children})=>{
 
         const currentTab = `tab${switchTab}`;
         setCheckedItems(selected[currentTab] || checkboxItemsPerTab[currentTab]);
-        // console.log(currentTab);
-        
+    
 
         if (location.pathname === "/register") {
             setButtonText("Sign in");
@@ -151,6 +177,7 @@ export const MostSmaProvider = (({children})=>{
             setCheckPage(true)
         }else if (location.pathname === "/") {
             setCheckPage(false)
+            setSwitchTopbar(false)
         }else{
             setSwitchTopbar(false)
             setCheckPage(false)
@@ -180,6 +207,16 @@ export const MostSmaProvider = (({children})=>{
         // console.log(text);
     }
 
+    const loginTextHandler = (e) => {
+        setLoginText((prevState) => ({
+            ...prevState,
+            [e.target.name]: e.target.value,
+            
+        }));
+        // setText({[e.target.name]: e.target.value,})
+        // console.log(loginText);
+    }
+
     const pwdHandler = () =>{
         if (!pwdShow) {
             setPwdShow(true)
@@ -206,6 +243,11 @@ export const MostSmaProvider = (({children})=>{
             setSwitchTab(previousTab); // Go back to the previous tab
         }
     })
+    
+
+    // useEffect(()=>{
+    //     console.log(Object.values(selected));
+    // },[selected])
 
     const continueHandler = (()=>{
         let hasTrueValue = false;
@@ -223,7 +265,7 @@ export const MostSmaProvider = (({children})=>{
             setHistory((prevHistory) => {
                 const updatedHistory = [...prevHistory, switchTab]; // Save the current tab
                 return updatedHistory;
-              });
+            });
             setSwitchTab((prev) => prev + 1); // Move to the next tab
         } else {
             alert("No checkboxes are checked");
@@ -233,10 +275,49 @@ export const MostSmaProvider = (({children})=>{
 
     const finishHandler = (()=>{
         alert("all done")
-        setTimeout(() => {
-            navigate("/home")
-        }, 2000);
+        const checkTabs = localStorage.getItem(('switchTab'))
+        // console.log(checkTabs);
+        
+        const convert = parseInt(checkTabs)
+        // console.log(convert);
+        
+        if (convert === 6) {
+            console.log("correct");    
+            setSwitchTab(1)
+            setHistory([])
+            setTimeout(() => {
+                navigate("/home")
+            }, 2000);
+            return;
+        }
     })
+    
+    const updateHandler = (e) => {
+        setUpdate((prevState) => ({
+            ...prevState,
+            [e.target.name]: e.target.value,
+        }));
+        // console.log(update);
+        
+        // setText({country: e.target.value})
+    }
+
+    const universityClick = (e) => {
+        // console.log(e);
+        setUpdate((prevState) => ({
+            ...prevState,
+            institution: e.target.value,
+        }));
+        // setText({country: e.target.value})
+    }
+
+    const courseClick = (e) => {
+        setUpdate((prevState) => ({
+            ...prevState,
+            course: e.target.value,
+        }));
+        // setText({country: e.target.value})
+    }
 
     const stateData = {
         buttonText,
@@ -251,6 +332,11 @@ export const MostSmaProvider = (({children})=>{
         error,
         errOverLay,
         checkedItems,
+        loginText,
+        errorType,
+        showCode,
+        loading,
+        update,
         setText,
         linkHandler,
         textHandler,
@@ -262,7 +348,15 @@ export const MostSmaProvider = (({children})=>{
         finishHandler,
         setErrOverLay,
         setError,
-        handleCheckboxChange
+        handleCheckboxChange,
+        loginTextHandler,
+        setLoading,
+        setLoginText,
+        setErrorType,
+        setShowCode,
+        universityClick,
+        courseClick,
+        updateHandler,
         
     }
 

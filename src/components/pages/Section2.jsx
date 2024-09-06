@@ -9,7 +9,7 @@ function Section2() {
         <div className="section2-Flex">
             <img src="/images/Group 1.png" alt="unknown" />
             <div className="section2-details">
-                <h2>Ready to start your SIWES with MOST ?</h2>
+                <h2>Ready to start your SIWES with MIST?</h2>
                 <p>If you’re a student planning to start an IT Career in tech world, Contact us for more details.</p>
                 <NavLink to="" className="activeclassname">
                   <MainButton buttonClass={"primary"}>

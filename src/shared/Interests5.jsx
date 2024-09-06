@@ -23,7 +23,7 @@ function Interests5() {
                 <p>working on varieties of tasks creates more knowledge.</p>
             </div>
             <div className="questions">
-                <h3><strong>5. What kind of tasks do you find most engaging ?
+                <h3><strong>5. What kind of tasks do you find mist engaging ?
                 (select all that apply)</strong></h3>
                 <div className='main-questions'>
                     {Object.keys(checkedItems).map((item) => (

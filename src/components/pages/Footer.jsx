@@ -22,7 +22,7 @@ function Footer() {
                 </div>
                 <div className="copyright">
                     <h1>&copy;</h1>
-                    <h4>MOST SMA. All right reserved.</h4>
+                    <h4>MIST SMA. All right reserved.</h4>
                 </div>
             </div>
         </div>

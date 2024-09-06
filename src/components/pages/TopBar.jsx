@@ -25,7 +25,7 @@ function TopBar() {
                             :
                             <>
                                 <i className="fa-solid fa-bell"></i>
-                                <NavLink>
+                                <NavLink to="/profile" className="activeclassname">
                                     <img src="/images/Screenshot 2024-08-06 145349.png" alt="profile-pic" />
                                 </NavLink>
                             </>  

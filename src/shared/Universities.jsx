@@ -1,10 +1,14 @@
 import React from 'react'
+import { useContext } from 'react'
+import MostSmaContext from '../context/Most-smaContext'
 
 function Universities() {
+  const {universityClick} = useContext(MostSmaContext)
+
   return (
     <div className='options-school'>
-        <input list="universities" type="text" name="nigerian-universities" id="nigerian-universities" placeholder='Enter or select your school / institution' />
-        <datalist id='universities'>
+        <input list="institution" type="text" name="nigerian-universities" id="nigerian-universities" placeholder='Enter or select your school / institution' onChange={universityClick} />
+        <datalist id='institution' >
             <option value="Adekunle Ajasin University, Akungba">Adekunle Ajasin University, Akungba (AAUA)</option>
             <option value="Abia State University, Uturu">Abia State University, Uturu (ABSU)</option>
             <option value="Abubakar Tafawa Balewa University, Bauchi">Abubakar Tafawa Balewa University, Bauchi (ATBU)</option>
