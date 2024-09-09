@@ -7,6 +7,7 @@ import MostSmaContext from '../../../context/Most-smaContext'
 import Error from '../../../shared/Error/Error'
 import { PuffLoader } from 'react-spinners'
 import { useNavigate } from 'react-router-dom'
+import Notifications from '../../../shared/Notifications'
 
 
 const override = {
@@ -198,6 +199,7 @@ function ProfileInfoUpdate() {
             </form>  
         </div>
         <Error/>
+        <Notifications />
     </div>
   )
 }

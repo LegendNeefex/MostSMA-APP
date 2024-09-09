@@ -17,7 +17,7 @@ const override = {
 
 
 function TopBar() {
-    const {otherButtonText,buttonText,linkHandler,switchTopbar,addProfile,checkPage,setLoading,loading,setErrorType,setErrOverLay,setError} = useContext(MostSmaContext)
+    const {otherButtonText,buttonText,linkHandler,switchTopbar,addProfile,checkPage,setLoading,loading,setErrorType,setErrOverLay,setError,setNotBox,notBox} = useContext(MostSmaContext)
     const [lognot, setLogNot] = useState(false);
     const [user, setUser] = useState((()=>{
         const storedUser = localStorage.getItem("studentData");
@@ -35,10 +35,14 @@ function TopBar() {
         setLogNot(location.pathname === "/profile");
 
         const noRedirectRoutes = ["/", "/about-us", "/login", "/register", "/profile"];
+        const restrictedRoutes = ["/login", "/register" , "/"];
 
         if (!user && !noRedirectRoutes.includes(location.pathname)) {
             console.log("User data is missing, redirecting to login...");
             navigate("/login");
+        }else if (user && restrictedRoutes.includes(location.pathname)) {
+            console.log("redirecting to home cause this page is restricted if user is present");
+            navigate("/home")
         }
     }, [location.pathname, navigate, user]);
 
@@ -66,48 +70,20 @@ function TopBar() {
         }
     };
 
+    const notBoxHandler = ((e)=>{
+        // console.log("notifiation icon clicked");
+        setNotBox(true)
+        
+    })
+
     // useEffect(() => {
-    //     if (location.pathname === "/profile") {
-    //         setLogNot(true);
-    //     } else {
-    //         setLogNot(false); // Reset when not on the profile page
-    //     }
+    // if (notBox) {
+    //     // The notBox state has been updated to true
+    //     console.log("notBox is now true");
+    //     // Perform any actions that need the updated state here
+    // }
+    // }, [notBox]);
 
-    //     const noRedirectRoutes = ["/", "/about-us", "/login", "/register" , "/profile"];
-
-    //     if (!user && !noRedirectRoutes.includes(location.pathname)) {
-    //         console.log("token is null, redirecting to login...");
-    //         navigate("/login");
-    //     }
-
-    // }, [location.pathname,navigate,user]); // Dependency on location.pathname
-
-
-    // const logOutHandler = () => {
-    //     if (!user.jwt) {
-    //         setLoading(true)
-    //         setTimeout(() => {
-    //             setLoading(false)
-    //             console.log("token is null");
-    //             navigate("/login")
-    //         }, 2000);
-            
-    //     }else{
-    //         // Your logout logic here
-    //         setLoading(true)
-    //         setTimeout(() => {
-    //             setLoading(false)
-    //             localStorage.removeItem("studentData","studentEmail")
-    //             setErrOverLay(true)
-    //             setError("Account has been logged out successfully")
-    //             setTimeout(() => {
-    //                 setErrOverLay(false)
-    //                 navigate("/login")
-    //             }, 2000);
-    //         }, 2000);
-    //         console.log("Logging out...");
-    //     }
-    // };
    
     return (
         <div className="TopBarContainer">
@@ -125,7 +101,7 @@ function TopBar() {
                     {
                         lognot ?
                             <>
-                                <i className="fa-solid fa-bell special"></i>
+                                <i className="fa-solid fa-bell special" onClick={notBoxHandler}></i>
                                 <MainButton buttonClass={"primary"} onClick={logOutHandler}>
                                     <span className='btn-text'>LogOut</span>
                                 </MainButton>
@@ -137,11 +113,11 @@ function TopBar() {
                                     {
                                         addProfile ? 
                                         <>
-                                            <i className="fa-solid fa-bell"></i>
+                                            <i className="fa-solid fa-bell" onClick={notBoxHandler}></i>
                                         </>
                                         :
                                         <>
-                                            <i className="fa-solid fa-bell"></i>
+                                            <i className="fa-solid fa-bell" onClick={notBoxHandler}></i>
                                             <NavLink to="/profile" className="activeclassname">
                                                 <img src="/images/Screenshot 2024-08-06 145349.png" alt="profile-pic" />
                                             </NavLink>

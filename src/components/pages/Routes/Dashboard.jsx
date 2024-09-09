@@ -8,6 +8,7 @@
   import Error from "../../../shared/Error/Error";
   import { useCallback } from "react";
   import { useMemo } from "react";
+import Notifications from "../../../shared/Notifications";
 
 
   function Dashboard() {
@@ -246,6 +247,7 @@
             </NavLink>
           </div>
         </section>
+          <Notifications />
       </>
     );
   }

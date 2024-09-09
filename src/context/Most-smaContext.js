@@ -29,6 +29,7 @@ export const MostSmaProvider = (({children})=>{
     const [errOverLay,setErrOverLay] = useState(false)
     const [showCode,setShowCode] = useState(false)
     const [loading,setLoading] = useState(false)
+    const [notBox,setNotBox] = useState(false)
 
     const [update,setUpdate] = useState({
         firstName:"",
@@ -339,6 +340,7 @@ export const MostSmaProvider = (({children})=>{
         showCode,
         loading,
         update,
+        notBox,
         setText,
         linkHandler,
         textHandler,
@@ -359,6 +361,7 @@ export const MostSmaProvider = (({children})=>{
         universityClick,
         courseClick,
         updateHandler,
+        setNotBox
         
     }
 

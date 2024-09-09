@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import MainButton from './MainButton';
 import ProgressBar from './ProgressBar';
 import MostSmaContext from '../context/Most-smaContext';
+import Notifications from './Notifications';
 
 function Interests3() {
     const {skipHandler,backHandler,continueHandler,checkedItems,handleCheckboxChange} = useContext(MostSmaContext)
@@ -50,6 +51,7 @@ function Interests3() {
                     </MainButton>
                 </NavLink>
             </div>
+            <Notifications />
         </div>
     )
 }

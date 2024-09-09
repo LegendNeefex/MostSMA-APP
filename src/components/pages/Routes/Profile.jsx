@@ -5,6 +5,7 @@ import { PuffLoader } from 'react-spinners'
 import { useContext } from 'react';
 import MostSmaContext from '../../../context/Most-smaContext';
 import { useNavigate } from 'react-router-dom';
+import Notifications from '../../../shared/Notifications';
 
 
 const override = {
@@ -117,6 +118,7 @@ function Profile() {
                 </div>
             </div>
         </div>
+        <Notifications />
     </div>
   )
 }

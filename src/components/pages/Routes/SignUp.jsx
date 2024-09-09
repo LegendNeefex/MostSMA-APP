@@ -144,6 +144,7 @@ function SignUp() {
 
     function formHandler(e) {
         e.preventDefault();
+        setShowCode(true)
 
         const caseCheck = text.email
         const passCheck = text.password

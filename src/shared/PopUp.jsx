@@ -65,6 +65,7 @@ function PopUp() {
     const verifyHandler = () => {
         const trimmedCombine = parseInt(combine.trim())
         console.log("clicked");
+        navigate("/profile-info-update")
         
     
         // console.log("Combined Code:", trimmedCombine);
@@ -84,6 +85,7 @@ function PopUp() {
             
         }
     };
+
 
     const validateCode = async (trimmedCombine) =>{
         const response = await fetch(`http://192.168.100.30/smaApi/api/students/validate`, {

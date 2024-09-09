@@ -902,6 +902,7 @@ body {
     left: 98px; 
     width: 200px;
     height: 200px;
+    cursor: pointer;
     /* transform: 0.3s ease-in-out; */
 }
 .profile-container .flexA .profile-picture img:hover{
@@ -989,4 +990,89 @@ body {
 .profile-container .flexB .flexBii .support .btn:first-child{
     width: 50%;
     margin-right: 24px;
+}
+
+/* notification page section */
+
+.main-container{
+    background-color: var(--default-primary-color);
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.25);
+    width: 400px;
+    height: 570px;
+    padding: 16px 24px 32px 24px;
+    border-radius: 7px;
+    position: fixed;
+    top: 80px;
+    right: 10px;
+    z-index: 1000;
+    overflow-y: scroll;
+}
+.main-container .header{
+   display: flex;
+   justify-content: space-between;
+   margin-bottom: 24px;
+   align-items: center;
+}
+
+.main-container .filter {
+   display: flex;
+   gap: 24px;
+}
+
+.main-container .filter .filt-cont{
+   background-color: var(--section-primary);
+   padding: 5px 10px;
+   border-radius: 100px;
+   cursor: pointer;
+}
+
+.main-container .filter .filt-cont:hover{
+   opacity: 0.9;
+}
+
+.main-container .filter .filt-cont p{
+  color: var(--default-primary-color);
+  font-size: 16px;
+  font-size: 500;
+}
+
+.main-container .header h2{
+   font-size: 20px;
+   /* font-weight: 700; */
+}
+.main-container .header .fa-solid{
+    font-size: 24px;
+    border: 2px solid var(--default-secondary-color);
+    background-color: var(--default-secondary-color);
+    color: var(--default-primary-color);
+   padding: 2px 4px;
+   border-radius: 100%;
+   cursor: pointer;
+}
+
+.main-container .not-container .not-box{
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.25);
+    margin-top: 16px;
+    padding: 16px;
+    border-radius: 7px;
+    cursor: pointer;
+    /* opacity: 1; */
+    
+}
+
+.main-container .not-container .not-box:hover{
+    background-color: #ccc;
+}
+
+.main-container .not-container .not-box h3{
+   font-size: 18px;
+   padding-bottom: 10px;
+}
+.main-container .not-container .not-box p{
+    font-size: 14px;
+    padding-bottom: 10px;
+   
+}
+.main-container .not-container .not-box .span{
+   font-weight: 700;
 }
