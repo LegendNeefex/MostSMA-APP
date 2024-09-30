@@ -1,29 +1,30 @@
 import React from 'react'
-import { useContext } from 'react';
+import { useContext} from 'react';
 import { NavLink } from 'react-router-dom';
 import MainButton from './MainButton';
 import ProgressBar from './ProgressBar';
-import MostSmaContext from '../context/Most-smaContext';
+import MostSmaContext from '../../context/Most-smaContext';
 import Notifications from './Notifications';
 
-function Interests2() {
+function Interests4() {
     const {skipHandler,backHandler,continueHandler,checkedItems,handleCheckboxChange} = useContext(MostSmaContext)
+    
 
     return (
         <div className="interest-container">
             <div className="bar-steps">
                 <div className="steps">
-                    <h3><strong>step 2:</strong> Experience</h3>
+                    <h3><strong>step 4:</strong> Projects</h3>
                     <NavLink onClick={backHandler}>
                         <h3><strong>Back</strong></h3>
                     </NavLink>
                 </div>
-                <ProgressBar progressClass={"20"} />
-                <h3>What are your experience ?</h3>
-                <p>We have some recommendations offer for you based on the interests you have chosen.</p>
+                <ProgressBar progressClass={"60"} />
+                <h3>What are your completed works and project?</h3>
+                <p>Building projects helps build experience.</p>
             </div>
             <div className="questions">
-                <h3><strong>2. Which of these topics do you have coursework or project experience in?
+                <h3><strong>4. What type of projects have you worked on or would you like to work on ?
                 (select all that apply)</strong></h3>
                 <div className='main-questions'>
                     {Object.keys(checkedItems).map((item) => (
@@ -56,4 +57,4 @@ function Interests2() {
     )
 }
 
-export default Interests2
+export default Interests4

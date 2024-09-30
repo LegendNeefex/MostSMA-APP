@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 // import MostSmaContext from '../context/Most-smaContext'
 import MainButton from './MainButton'
-import MostSmaContext from '../context/Most-smaContext';
+import MostSmaContext from '../../context/Most-smaContext';
 import { useNavigate } from 'react-router-dom';
 import { PuffLoader } from 'react-spinners'
 
@@ -14,7 +14,7 @@ const override = {
 
 function PopUp() {
     const [code, setCode] = useState(Array(6).fill(''))
-    const {setErrOverLay,setError,text,setErrorType,showCode,setShowCode,loading,setLoading} = useContext(MostSmaContext)
+    const {setErrOverLay,setError,setErrorType,showCode,setShowCode,loading,setLoading} = useContext(MostSmaContext)
     const navigate = useNavigate();
     
         
@@ -65,11 +65,7 @@ function PopUp() {
     const verifyHandler = () => {
         const trimmedCombine = parseInt(combine.trim())
         console.log("clicked");
-        navigate("/profile-info-update")
-        
-    
-        // console.log("Combined Code:", trimmedCombine);
-        // console.log("Expected Data:", data);
+        // navigate("/profile-info-update")
     
         if (!trimmedCombine) {
             setErrOverLay(true);
@@ -86,6 +82,12 @@ function PopUp() {
         }
     };
 
+    const savedEmail = localStorage.getItem("savedEmail");
+    const email = JSON.parse(savedEmail)
+    
+    const savedPassword = localStorage.getItem("savedPassword");
+    const password = JSON.parse(savedPassword)
+    
 
     const validateCode = async (trimmedCombine) =>{
         const response = await fetch(`http://192.168.100.30/smaApi/api/students/validate`, {
@@ -94,8 +96,8 @@ function PopUp() {
             "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                email: text.email,
-                password:text.password,
+                email: email,
+                password:password,
                 code: trimmedCombine
             }),
         });
@@ -104,21 +106,47 @@ function PopUp() {
         console.log(data);
         localStorage.setItem("studentData", JSON.stringify(data));
 
-        if (data) {
-            setLoading(true)
-            setTimeout(() => {
-                setLoading(false)
-                setCode(Array(6).fill(''))
-                setShowCode(false)
+        const checkData = data.title;
+        console.log(checkData);
+
+        try {
+             setLoading(true)
                 setTimeout(() => {
-                    navigate("/profile-info-update")
+                    setLoading(false)
+                    setCode(Array(6).fill(''))
+                    setErrOverLay(true)
+                    setError("Account created successfully")
+                    setErrorType(true)
+                    setTimeout(() => {
+                        setShowCode(false)
+                        setErrOverLay(false)
+                        navigate("/profile-info-update")
+                    }, 2000);
                 }, 2000);
+            if (data) {
+               
+            }else if (checkData === "Failed") {
+                console.log("data isn't valid");
+                setLoading(false)
+                setErrOverLay(true)
+                setError("An error occured. Please try again.")
+                setTimeout(() => {
+                    setErrOverLay(false)
+                }, 2000);
+            }
+        } catch (error) {
+            console.error("Error creating student",error)
+            setLoading(false)
+            setErrOverLay(true)
+            setError("An error occured. Please try again.")
+            setTimeout(() => {
+                setErrOverLay(false)
             }, 2000);
-        }else{
-            console.log("data isn't valid");
         }
         
     }
+
+    
 
   return (
     <>
@@ -134,7 +162,7 @@ function PopUp() {
             <div className="popup-overlay">
                 <div className="popup">
                     <div className="popup-flex">
-                        <h2>A verification code was sent to user351 , please check and input below</h2>
+                        <h2>A verification code was sent to user531 , please check and input below</h2>
                         <div className="code-input">
                             {code.map((_, index) => (
                                 <input

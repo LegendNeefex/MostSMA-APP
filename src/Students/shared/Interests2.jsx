@@ -1,28 +1,30 @@
-import React, { useContext } from 'react'
+import React from 'react'
+import { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import MainButton from './MainButton';
 import ProgressBar from './ProgressBar';
-import MostSmaContext from '../context/Most-smaContext';
+import MostSmaContext from '../../context/Most-smaContext';
 import Notifications from './Notifications';
 
-function Interests6() {
-    const {backHandler,finishHandler,checkedItems,handleCheckboxChange} = useContext(MostSmaContext)
+function Interests2() {
+    const {skipHandler,backHandler,continueHandler,checkedItems,handleCheckboxChange} = useContext(MostSmaContext)
 
     return (
         <div className="interest-container">
             <div className="bar-steps">
                 <div className="steps">
-                    <h3><strong>step 6:</strong> Goals</h3>
+                    <h3><strong>step 2:</strong> Experience</h3>
                     <NavLink onClick={backHandler}>
                         <h3><strong>Back</strong></h3>
                     </NavLink>
                 </div>
-                <ProgressBar progressClass={"100"} />
-                <h3>What do you plan on doing later on?</h3>
-                <p>having a career insights is a great achievement.</p>
+                <ProgressBar progressClass={"20"} />
+                <h3>What are your experience ?</h3>
+                <p>We have some recommendations offer for you based on the interests you have chosen.</p>
             </div>
             <div className="questions">
-                <h3><strong>6. What are your career goals ? (select all that apply)</strong></h3>
+                <h3><strong>2. Which of these topics do you have coursework or project experience in?
+                (select all that apply)</strong></h3>
                 <div className='main-questions'>
                     {Object.keys(checkedItems).map((item) => (
                         <label key={item}>
@@ -38,9 +40,14 @@ function Interests6() {
                 </div>
             </div>
             <div className="buttons">
-                <NavLink onClick={finishHandler}>
+                <NavLink onClick={skipHandler}>
+                    <MainButton buttonClass={"secondary"}>
+                        <span className='btn-text'>skip</span>
+                    </MainButton>
+                </NavLink>
+                <NavLink onClick={continueHandler}>
                     <MainButton buttonClass={"primary"}>
-                        <span className='btn-text'>finish</span>
+                        <span className='btn-text'>continue</span>
                     </MainButton>
                 </NavLink>
             </div>
@@ -49,4 +56,4 @@ function Interests6() {
     )
 }
 
-export default Interests6
+export default Interests2

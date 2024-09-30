@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import MostSmaContext from '../../context/Most-smaContext'
+import MostSmaContext from '../../../context/Most-smaContext'
 
 function Error() {
   const {error,errOverLay,errorType} = useContext(MostSmaContext)

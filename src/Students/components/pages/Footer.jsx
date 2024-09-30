@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { NavLink } from 'react-router-dom'
-import MostSmaContext from '../../context/Most-smaContext'
+import MostSmaContext from '../../../context/Most-smaContext'
 
 function Footer() {
     const {checkPage} = useContext(MostSmaContext)
@@ -8,7 +8,9 @@ function Footer() {
     <div className="footer-container">
         <div className="footerFlex">
             <NavLink to={checkPage ? "/" : "/home"} className="activeclassname" >
-                <img src="/images/MOST SMA-logo-white.png" alt="most-sma-logo" /> 
+                <div className='profile-picture'>
+                    <img src="/images/MOST SMA-logo-white.png" alt="most-sma-logo" />
+                </div>
             </NavLink>
             <div className="contact">
                 <h3>CONTACTS</h3>

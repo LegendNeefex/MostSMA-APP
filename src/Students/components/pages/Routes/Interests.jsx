@@ -5,11 +5,10 @@ import Interests3 from '../../../shared/Interests3'
 import Interests4 from '../../../shared/Interests4'
 import Interests5 from '../../../shared/Interests5'
 import Interests6 from '../../../shared/Interests6'
-import MostSmaContext from '../../../context/Most-smaContext'
+import MostSmaContext from '../../../../context/Most-smaContext'
 
 function Interests() {
   const {switchTab} = useContext(MostSmaContext)
-
   const renderCurrentTab = () => {
     switch (switchTab) {
       case 1:

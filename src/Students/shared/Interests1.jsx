@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { NavLink } from 'react-router-dom';
 import MainButton from './MainButton';
 import ProgressBar from './ProgressBar';
-import MostSmaContext from '../context/Most-smaContext';
+import MostSmaContext from '../../context/Most-smaContext';
 import Notifications from './Notifications';
 
 function Interests1() {

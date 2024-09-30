@@ -123,7 +123,7 @@ body {
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
-    z-index: 999; /* Make sure the overlay is above other content */
+    z-index: 1000; /* Make sure the overlay is above other content */
 }
 
 .popup{
@@ -188,9 +188,18 @@ body {
     margin: 0 auto;
 }
 
-.TopBarContainer .TopBarFlex img {
-    height: 70px;
+.TopBarContainer .TopBarFlex .profile-picture, .footer-container .footerFlex .profile-picture {
     object-fit: cover;
+    cursor: pointer;
+    background-color: var(--default-primary-color);
+    border-radius: 100%;
+    padding: 10px;
+}
+    
+.TopBarContainer .TopBarFlex img {
+    object-fit: cover;
+    height: 50px;
+    width: 60px;
 }
 
 .TopBarContainer .TopBarFlex .buttons .btn {
@@ -377,8 +386,9 @@ body {
 }
 
 .footer-container .footerFlex img {
-    height: 70px;
     object-fit: cover;
+    height: 50px;
+    width: 60px;
 }
 
 .footer-container .footerFlex .contact,
@@ -622,9 +632,11 @@ body {
 }
 
 .progress-information img{
+    border-radius: 100%;    
+    object-fit: cover;
     width: 200px;
     height: 200px;
-    transform: 0.3s ease-in-out;
+    cursor: pointer;
     
 }
 
@@ -886,44 +898,63 @@ body {
     margin: 32px 0;
 }
 
-.profile-container .flexA .profile-picture .frame{
-    border:2px;
-    width: 210px;
-    height: 210px;
-    border:2px solid var(--primary-color-2);
-    border-radius: 100%;    
-    /* position: relative; */
+.profile-container .flexA .profile-picture {
     margin: 0 auto;
+    text-align: center;
 }
+
 .profile-container .flexA .profile-picture img{
-    position: absolute;
+    border-radius: 100%;    
     object-fit: cover;
-    bottom: 286px;
-    left: 98px; 
     width: 200px;
     height: 200px;
     cursor: pointer;
     /* transform: 0.3s ease-in-out; */
 }
+
 .profile-container .flexA .profile-picture img:hover{
     transform: scale(0.9);
 }
 
-.profile-container .flexA .user-details{
-    text-align: center;
+.profile-container .flexA .user-details {
     padding: 16px;
-    /* margin-bottom: 48px; */
-}
-.profile-container .flexA .user-details h2{
-    color: var(--default-secondary-color);
-    font-weight: 700;
-    padding-bottom: 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
-.profile-container .flexA .user-details p{
+.profile-container .flexA .user-details .div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.profile-container .flexA .user-details h2, 
+.profile-container .flexA .user-details p {
+    margin-bottom: 5px; 
+    color: var(--default-secondary-color);
+    font-weight: 700;
+    /* padding-bottom: 6px; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-container .flexA .user-details h2{
+    font-size: 20px;
+}
+.profile-container .flexA .user-details p {
     color: var(--light-ash);
-    padding-bottom: 6px;
-    /* font-size: 20px; */
+    font-weight: normal; 
+}
+
+.profile-container .flexA .user-details i {
+    margin-left: 10px;
+    font-size: 14px; 
+    color: var(--default-secondary-color); 
+    cursor: pointer; 
 }
 
 .profile-container .flexA .btn:last-child{
@@ -931,31 +962,48 @@ body {
 }
 
 /* FlexB */
-.profile-container .flexB{
+.profile-container .flexB {
     margin: 32px 0;
 }
 
-.profile-container .flexB .flexBi{
+.profile-container .flexB .flexBi {
     background-color: var(--default-primary-color);
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.25);
     padding: 24px 48px;
     width: 779px;
 }
 
-.profile-container .flexB .flexBi h2{
+.profile-container .flexB .flexBi h2 {
     margin-bottom: 32px;
 }
 
-.profile-container .flexB .flexBi .details .detail{
+.profile-container .flexB .flexBi .details .detail {
     display: flex;
     align-items: center;
-    /* justify-content: space-between; */
-    margin-top: 16px; 
+    /* justify-content: space-between;  */
+    margin-top: 16px;
+    /* gap: 40px; */
 }
-.profile-container .flexB .flexBi .details .detail h3{
+
+
+.profile-container .flexB .flexBi .details .detail h3 {
     font-size: 18px;
     color: var(--light-ash);
+    margin-right: 16px; 
 }
+
+.profile-container .flexB .flexBi .details .detail p {
+    flex-grow: 1; 
+    text-align: left;
+}
+
+.profile-container .flexB .flexBi .details .detail i {
+    padding-left: 20px;
+    font-size: 14px; 
+    color: var(--default-secondary-color); 
+    cursor: pointer; 
+}
+
 
 .profile-container .flexB .flexBii{
     margin-top: 16px;
@@ -992,6 +1040,39 @@ body {
     margin-right: 24px;
 }
 
+.profile-container .flexA input[type="text"], 
+.profile-container .flexB input[type="text"],
+.profile-container .flexA input[type="number"], 
+.profile-container .flexB input[type="number"] {
+    width: 251px;
+    padding: 1px 10px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    transition: 0.3s ease-in-out;
+    outline: none;
+    border-color: var(--default-secondary-color);
+    background-color: var(--white);
+}
+
+/* Add placeholder styling */
+.profile-container .flexA input::placeholder, 
+.profile-container .flexB input::placeholder {
+    color: var(--light-ash);
+    opacity: 0.7; 
+}
+
+/* Remove arrows from number inputs in Webkit-based browsers (e.g., Chrome, Safari) */
+.profile-container input[type="number"]::-webkit-inner-spin-button,
+.profile-container input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Remove arrows from number inputs in Firefox */
+.profile-container input[type="number"] {
+    -moz-appearance: textfield;
+}
+
 /* notification page section */
 
 .main-container{
@@ -1000,13 +1081,40 @@ body {
     width: 400px;
     height: 570px;
     padding: 16px 24px 32px 24px;
-    border-radius: 7px;
+    border-radius: 10px;
     position: fixed;
-    top: 80px;
-    right: 10px;
+    top: 100px;
+    right: 20px;
     z-index: 1000;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
+
+.main-container::-webkit-scrollbar {
+    width: 10px; /* Width of the scrollbar */
+}
+
+/* Track (background) */
+.main-container::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Track color */
+    border-radius: 10px;
+}
+
+/* Handle (scroll thumb) */
+.main-container::-webkit-scrollbar-thumb {
+    background: #888; /* Scrollbar color */
+    border-radius: 10px; /* Rounded corners */
+}
+
+/* Handle on hover */
+.main-container::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Darken on hover */
+}
+
+/* Customize the corner of the scrollbar (optional) */
+.main-container::-webkit-scrollbar-corner {
+    background: transparent; /* Make the corner invisible */
+}
+
 .main-container .header{
    display: flex;
    justify-content: space-between;
@@ -1019,21 +1127,19 @@ body {
    gap: 24px;
 }
 
-.main-container .filter .filt-cont{
-   background-color: var(--section-primary);
-   padding: 5px 10px;
-   border-radius: 100px;
-   cursor: pointer;
+.main-container .filt-cont {
+    cursor: pointer;
+    padding: 10px;
+    transition: background-color 0.3s ease;
+    /* font-weight: 700; */
 }
 
-.main-container .filter .filt-cont:hover{
-   opacity: 0.9;
-}
+.main-container .filt-cont.active {
+    background-color: var(--light-ash);
+    color: var(--default-primary-color);
+    padding: 10px;
+    border-radius: 10px;
 
-.main-container .filter .filt-cont p{
-  color: var(--default-primary-color);
-  font-size: 16px;
-  font-size: 500;
 }
 
 .main-container .header h2{
@@ -1048,6 +1154,7 @@ body {
    padding: 2px 4px;
    border-radius: 100%;
    cursor: pointer;
+   z-index: 1000;
 }
 
 .main-container .not-container .not-box{
@@ -1075,4 +1182,63 @@ body {
 }
 .main-container .not-container .not-box .span{
    font-weight: 700;
+}
+
+.comment-container{
+    background-color: var(--section-secondary);
+    width: 400px;
+    padding: 16px;
+    border-radius: 10px;
+    position: fixed;
+    top:160px;
+    right: 40px;
+    z-index: 1000;
+}
+
+.comment-container .fa-xmark, .main-container .fa-xmark{
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.main-container .fa-xmark{
+    color: var(--default-secondary-color);
+    position: relative;
+    /* left: 65px; */
+    padding-bottom: 24px;
+}
+.comment-container .fa-xmark{
+    color: var(--default-primary-color);
+    position: relative;
+    left: 65px;
+    padding-top: 24px;
+
+}
+
+.comment-container p{
+    font-size: 14px;
+    color: var(--default-primary-color);
+    padding-bottom: 6px;
+}
+
+.comment-container .not{
+    cursor: pointer;
+   display: flex;
+   gap: 16px;
+   padding: 7px;
+   
+}
+
+.comment-container .not:hover{
+    background-color: var(--light-ash);
+    padding: 10px;
+    border-radius: 10px;
+    /* opacity: 0.9; */
+}
+
+
+.comment-container .not .fa-solid{
+   font-size: 18px;
+   color: var(--default-primary-color);
+   
 }

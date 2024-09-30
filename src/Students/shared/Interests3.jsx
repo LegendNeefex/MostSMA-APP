@@ -3,28 +3,27 @@ import { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import MainButton from './MainButton';
 import ProgressBar from './ProgressBar';
-import MostSmaContext from '../context/Most-smaContext';
+import MostSmaContext from '../../context/Most-smaContext';
 import Notifications from './Notifications';
 
-function Interests5() {
+function Interests3() {
     const {skipHandler,backHandler,continueHandler,checkedItems,handleCheckboxChange} = useContext(MostSmaContext)
-
 
     return (
         <div className="interest-container">
             <div className="bar-steps">
                 <div className="steps">
-                    <h3><strong>step 5:</strong> Tasks</h3>
+                    <h3><strong>step 3:</strong> Certifications</h3>
                     <NavLink onClick={backHandler}>
                         <h3><strong>Back</strong></h3>
                     </NavLink>
                 </div>
-                <ProgressBar progressClass={"80"} />
-                <h3>What task do you do more often?</h3>
-                <p>working on varieties of tasks creates more knowledge.</p>
+                <ProgressBar progressClass={"40"} />
+                <h3>What certifications do you have?</h3>
+                <p>Depending on your skill, This will help us in rendering a perfect IT training for you.</p>
             </div>
             <div className="questions">
-                <h3><strong>5. What kind of tasks do you find mist engaging ?
+                <h3><strong>3. Which certifications or courses have you completed or interested in ?
                 (select all that apply)</strong></h3>
                 <div className='main-questions'>
                     {Object.keys(checkedItems).map((item) => (
@@ -57,4 +56,4 @@ function Interests5() {
     )
 }
 
-export default Interests5
+export default Interests3

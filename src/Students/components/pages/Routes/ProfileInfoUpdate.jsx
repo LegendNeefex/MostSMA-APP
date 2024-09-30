@@ -3,7 +3,7 @@ import MainButton from '../../../shared/MainButton'
 import Universities from '../../../shared/Universities'
 import Courses from '../../../shared/Courses'
 import { useContext } from 'react'
-import MostSmaContext from '../../../context/Most-smaContext'
+import MostSmaContext from '../../../../context/Most-smaContext'
 import Error from '../../../shared/Error/Error'
 import { PuffLoader } from 'react-spinners'
 import { useNavigate } from 'react-router-dom'
@@ -56,7 +56,7 @@ function ProfileInfoUpdate() {
 
         const storedUser = localStorage.getItem("studentData")
         const token = storedUser ? JSON.parse(storedUser) : null;
-        // console.log(token.jwt);
+
         
         // const storedEmail = localStorage.getItem("studentEmail")
         // const studentEmail = storedUser ? JSON.parse(storedEmail) : null;
@@ -150,7 +150,8 @@ function ProfileInfoUpdate() {
                         setErrOverLay(false);
                         setErrorType(false);
                         setTimeout(() => {
-                            navigate("/Interests");
+                            // navigate("/Interests");
+                            navigate("/home");
                         }, 1000);
                     }, 2000);
                 }, 2000);

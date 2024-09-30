@@ -1,6 +1,6 @@
 import React from 'react'
 import { useContext } from 'react'
-import MostSmaContext from '../context/Most-smaContext'
+import MostSmaContext from '../../context/Most-smaContext'
 
 function Courses() {
     const {courseClick} = useContext(MostSmaContext)

@@ -17,6 +17,7 @@ export const MostSmaProvider = (({children})=>{
         password:""
     })
     const [errorType,setErrorType] = useState(false)
+    const [lognot, setLogNot] = useState(false);
 
     const [pwdShow,setPwdShow] = useState(false)
     const [switchTopbar,setSwitchTopbar] = useState(false)
@@ -30,6 +31,7 @@ export const MostSmaProvider = (({children})=>{
     const [showCode,setShowCode] = useState(false)
     const [loading,setLoading] = useState(false)
     const [notBox,setNotBox] = useState(false)
+    
 
     const [update,setUpdate] = useState({
         firstName:"",
@@ -156,6 +158,7 @@ export const MostSmaProvider = (({children})=>{
         } else if (location.pathname === "/login") {
             setButtonText("Sign up");
             setOtherButtonText("Home");
+            setLogNot(false)
         }else if (location.pathname === "/profile") {
             setCheckPage(true); 
             // console.log("home");
@@ -170,15 +173,19 @@ export const MostSmaProvider = (({children})=>{
             setSwitchTopbar(true)
             setAddProfile(true)
             setCheckPage(false)
+            setLogNot(false)
         }else if (location.pathname === "/interests") {
             setSwitchTopbar(true)
             setAddProfile(true)
             setCheckPage(false)
+            setLogNot(false)
         }else if (location.pathname === "/home") {
             setSwitchTopbar(true)
             setAddProfile(false)
+            setLogNot(false)
             setCheckPage(true)
         }else if (location.pathname === "/") {
+            setLogNot(false)
             setCheckPage(false)
             setSwitchTopbar(false)
         }else{
@@ -341,6 +348,7 @@ export const MostSmaProvider = (({children})=>{
         loading,
         update,
         notBox,
+        lognot,
         setText,
         linkHandler,
         textHandler,
@@ -361,7 +369,8 @@ export const MostSmaProvider = (({children})=>{
         universityClick,
         courseClick,
         updateHandler,
-        setNotBox
+        setNotBox,
+        setLogNot
         
     }
 

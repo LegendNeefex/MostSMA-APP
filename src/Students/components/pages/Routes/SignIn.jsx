@@ -2,7 +2,7 @@ import React from 'react'
 import MainButton from '../../../shared/MainButton'
 import { NavLink } from 'react-router-dom'
 import { useContext } from 'react'
-import MostSmaContext from '../../../context/Most-smaContext'
+import MostSmaContext from '../../../../context/Most-smaContext'
 import Error from '../../../shared/Error/Error'
 import { useNavigate } from 'react-router-dom'
 import { PuffLoader } from 'react-spinners'
@@ -51,63 +51,79 @@ function SignIn() {
     })
 
     const loginStudent = async (loggedinData) =>{
-        const response = await fetch(`http://192.168.100.30/smaApi/api/students/login`, {
-            method: "POST",
-            headers: {
-            "Content-Type": "application/json",
-            },
-            body: JSON.stringify(loggedinData),
-        });
 
-        const data = await response.json();
-        
-        const checkData = data.title;
-        // console.log(data);
+        setLoading(true);
 
-        if (checkData === "Failed") {
-            setLoading(true)
-            setTimeout(() => {
-                setLoading(false)
-                setErrOverLay(true)
-                setError("Incorrect credentials, try again!")
-                setTimeout(() => {
-                    setErrOverLay(false)
-                    // setLoginText({
-                    //     email:"",
-                    //     password:""
-                    // })
-                }, 2000);
-            }, 2000); 
-            return;
-        }else{
-            const emailCheck = loginText.email
-            const emailChange = emailCheck.toLowerCase();
+        try {
+            const response = await fetch(`http://192.168.100.30/smaApi/api/students/login`, {
+                method: "POST",
+                headers: {
+                "Content-Type": "application/json",
+                },
+                body: JSON.stringify(loggedinData),
+            });
+    
+            const data = await response.json();
             
-            // console.log("loggedin");
-            // localStorage.setItem("studentData", JSON.stringify(data));
-            localStorage.setItem("studentEmail", JSON.stringify(emailChange));
-            setLoading(true)
-            setTimeout(() => {
-                setLoading(false)
-                setErrOverLay(true)
-                setErrorType(true)
-                setError("Logged in successful")
-                setTimeout(() => {
-                    setErrOverLay(false)
-                    setErrorType(false)
+            const checkData = data.title;
+            // console.log(data);
+    
+           setTimeout(() => {
+               setLoading(false)
+                if (checkData === "Failed") {
+                    setTimeout(() => {
+                        setLoading(false)
+                        setErrOverLay(true)
+                        setError("Incorrect credentials, try again!")
+                        setTimeout(() => {
+                            setErrOverLay(false)
+                            // setLoginText({
+                            //     email:"",
+                            //     password:""
+                            // })
+                        }, 2000);
+                    }, 2000); 
+                    return;
+                }else{
+                    const emailCheck = loginText.email
+                    const emailChange = emailCheck.toLowerCase();
+                    
+                    // console.log("loggedin");
+                    localStorage.setItem("studentData", JSON.stringify(data));
+                    localStorage.setItem("studentEmail", JSON.stringify(emailChange));
                     setLoading(true)
                     setTimeout(() => {
                         setLoading(false)
-                        setLoginText({
-                            email:"",
-                            password:""
-                        })
-                        navigate("/home")
-                    },1000);
-                }, 2000);
+                        setErrOverLay(true)
+                        setErrorType(true)
+                        setError("Logged in successful")
+                        setTimeout(() => {
+                            setErrOverLay(false)
+                            setErrorType(false)
+                            setLoading(true)
+                            setTimeout(() => {
+                                setLoading(false)
+                                setLoginText({
+                                    email:"",
+                                    password:""
+                                })
+                                navigate("/home")
+                            },1000);
+                        }, 2000);
+                    }, 2000);
+                    
+                } 
             }, 2000);
-            
-        } 
+        } catch (error) {
+            console.error("Error creating student",error)
+            setLoading(false)
+            setErrOverLay(true)
+            setError("An error occured. Please try again.")
+            setTimeout(() => {
+                setErrOverLay(false)
+            }, 2000);
+        }
+        
     }
 
   return (
